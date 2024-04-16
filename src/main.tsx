@@ -8,10 +8,11 @@ import 'reset-css'
 //全局样式 @/是绝对路径
 import '@/assets/styles/global.scss'
 //组件的样式
-import App from './App.tsx'
+// import App from './App.tsx'
+import Router from './router'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <Router />
   </React.StrictMode>,
 )
