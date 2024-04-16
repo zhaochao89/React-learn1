@@ -1,19 +1,27 @@
-import App from "@/App";
-import Home from "@/views/Home";
-import About from "@/views/About";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+//路由表形式的写法
+import { Navigate } from "react-router-dom"
+import Home from "@/views/Home"
+import About from "@/views/About"
+import User from "@/views/User"
 
-const baseRouter = () => (
-    <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<App />}>
-                {/* 重定向，当访问/时，重定向到/home */}
-                <Route path="/" element={<Navigate to="/home" />}></Route>
-                <Route path="/home" element={<Home />}></Route>
-                <Route path="/about" element={<About />}></Route>
-            </Route>
-        </Routes>
-    </BrowserRouter>
-)
+const routes = [
+    {
+        path: "/",
+        // 重定向
+        element: <Navigate to="/home" /> 
+    },
+    {
+        path: "/home",
+        element: <Home />
+    },
+    {
+        path: "/about",
+        element: <About />
+    },
+    {
+        path: "/user",
+        element: <User />
+    }
+]
 
-export default baseRouter
+export default routes
