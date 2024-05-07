@@ -10,3 +10,11 @@ img {
     //禁止图片拖拽
     -webkit-user-drag: none;
 }
+
+//首页
+.demo-logo-vertical {
+    height: 32px;
+    margin: 16px;
+    background-color: rgba($color: #FFFFFF, $alpha: 0.3);
+    border-radius: 8px;
+}

@@ -7,10 +7,6 @@ function App() {
 
   return (
     <div className="App">
-      <Link to="/home">Home</Link> |
-      <Link to="/about">About</Link> |
-      <Link to="/user">User</Link>
-      
       {routes}
     </div>
   )
