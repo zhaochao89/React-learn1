@@ -9,23 +9,43 @@ const About = lazy(() => import("@/views/About"))
 const User = lazy(() => import("@/views/User"))
 
 const routes = [
+    // 嵌套路由===============start
     {
-        path: "/",
-        // 重定向
-        element: <Navigate to="/home" /> 
+        path: '/',
+        element: <Navigate to='/about' />
     },
     {
-        path: "/home",
-        element: <Home />
-    },
-    {
-        path: "/about",
-        element: <About />
-    },
-    {
-        path: "/user",
-        element: <User />
+        path: '/',
+        element: <Home />,
+        children: [
+            {
+                path: '/about',
+                element: <About />
+            },
+            {
+                path: '/user',
+                element: <User />
+            }
+        ]
     }
+    //嵌套路由================end
+    // {
+    //     path: "/",
+    //     // 重定向
+    //     element: <Navigate to="/home" /> 
+    // },
+    // {
+    //     path: "/home",
+    //     element: <Home />
+    // },
+    // {
+    //     path: "/about",
+    //     element: <About />
+    // },
+    // {
+    //     path: "/user",
+    //     element: <User />
+    // }
 ]
 
 export default routes
