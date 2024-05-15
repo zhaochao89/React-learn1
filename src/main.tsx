@@ -14,9 +14,7 @@ import { BrowserRouter } from 'react-router-dom'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <React.Suspense fallback={<div>loading</div>}>
-        <App />
-      </React.Suspense>
+      <App />
     </BrowserRouter>
   </React.StrictMode>,
 )
