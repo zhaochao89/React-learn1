@@ -1,4 +1,3 @@
-
 import {
     DesktopOutlined,
     FileOutlined,
@@ -8,8 +7,9 @@ import {
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
+import MenuItem from 'antd/es/menu/MenuItem';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -47,13 +47,30 @@ const items: MenuItem[] = [
 const MainMenu: React.FC = () => {
 
     const navigateTo = useNavigate();
-
+    const currentLocation = useLocation();
+    // 开发模式下开启了严格模式这里会打印两次，生产环境不会。如果不想让打印两次，将main.tsx中的<React.StrictMode>注释掉即可。
+    console.log('first', currentLocation);
     const menuClick = (e: { key: string }) => {
         console.log('点击了菜单', e.key);
         navigateTo(e.key);
     }
+    let firstOpenKey = '';
+    for (let i = 0; i < items.length; i++) {
+        // @ts-ignore 忽略ts的检查报错
+        if (items[i]['children'] && items[i]['children'].length > 0) {
+            // @ts-ignore
+            for (let j = 0; j < items[i]['children'].length; j++) {
+                // @ts-ignore
+                if (items[i]['children'][j]['key'] === currentLocation.pathname) {
+                    // @ts-ignore
+                    firstOpenKey = items[i]['key'];
+                    break;
+                }
+            }
+        }
+    }
 
-    const [openKeys, setOpenKeys] = useState(['']);
+    const [openKeys, setOpenKeys] = useState([firstOpenKey]);
     const handleOpenChange = (openKeys: string[]) => {
         //openkeys：当前展开的菜单项的 key 数组
         console.log('openKeys', openKeys);
@@ -66,7 +83,7 @@ const MainMenu: React.FC = () => {
     }
     return (<Menu
         theme="dark"
-        defaultSelectedKeys={['/about']}
+        defaultSelectedKeys={[currentLocation.pathname]}
         mode="inline"
         items={items}
         onClick={menuClick}

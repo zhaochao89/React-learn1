@@ -33,7 +33,7 @@ const routes = [
     },
     {
         path: '/',
-        element: <Home />,
+        element: withLoadingComponent(<Home />),
         children: [
             {
                 path: '/about',
@@ -52,8 +52,12 @@ const routes = [
                 element: withLoadingComponent(<Page2 />)
             }
         ]
-    }
+    },
     //嵌套路由================end
+    {
+        path: "*",
+        element: <Navigate to='/about' />
+    },
     // {
     //     path: "/",
     //     // 重定向
