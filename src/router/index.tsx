@@ -9,6 +9,7 @@ const About = lazy(() => import("@/views/About"))
 const User = lazy(() => import("@/views/User"))
 const Page1 = lazy(() => import("@/views/Page1"))
 const Page2 = lazy(() => import("@/views/Page2"))
+import Login from "@/views/Login"
 
 // 两种写法：第一种箭头函数右侧是大括号的需要有return；
 //第二种箭头函数右侧是小括号的不需要return，默认是返回括号里的内容
@@ -52,6 +53,10 @@ const routes = [
                 element: withLoadingComponent(<Page2 />)
             }
         ]
+    },
+    {
+        path: '/login',
+        element: <Login />
     },
     //嵌套路由================end
     {
